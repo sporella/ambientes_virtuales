@@ -1,0 +1,138 @@
+---
+title: "Entendiendo Ambientes Virtuales en Python"
+author: "Stephanie Orellana"
+engine: knitr
+format:
+  revealjs:
+    incremental: true 
+    theme: styles.scss
+---
+
+
+## Un ambiente virtual es un espacio aislado donde puedes instalar paquetes específicos para un proyecto sin afectar otros proyectos o el sistema global
+
+![](./img/isolation2.png){fig-align="right"}
+
+## Importancia en el desarrollo con Python: evita conflictos de dependencias y asegura portabilidad
+
+![](./img/conflict.png){fig-align="right"}
+
+## Herramientas más utilizadas
+
+- venv (integrado en Python)
+- virtualenv
+- pipenv
+- conda
+- poetry
+- ...
+
+![](./img/tools.png){fig-align="right"}
+
+## Algunos conceptos clave
+
+![](img/venn_diagram_updated_08_2024.png){width=80%, fig-align="center"}
+
+[Fuente: Anna-Lena Popkes](https://alpopkes.com/posts/python/packaging_tools/#last-update)
+
+
+## Problemas comunes al no usar ambientes virtuales
+
+- Conflictos de versiones entre proyectos (ejemplo: un proyecto necesita Django 3.2 y otro Django 4.0).
+
+- Instalaciones globales que generan problemas en otros programas (esto es muy común cuando trabajamos con programas para datos geoespaciales!)
+
+- Necesito cambiar el computador con el que estoy trabajando y no sé cómo mover mi proyecto y todas sus dependencias.
+
+
+## Buenas prácticas
+
+- Organización de proyectos:
+  - Crear un ambiente por proyecto para evitar conflictos.
+  - Mantener dependencias actualizadas y específicas para el proyecto.
+
+- Uso de archivos requirements.txt:
+  - Generar: `pip freeze > requirements.txt`
+  - Instalar en otro entorno: `pip install -r requirements.txt`
+
+## Buenas prácticas
+
+- Nombres descriptivos para ambientes:
+  - Ejemplo: "mi_proyecto_env" en lugar de solo "env"
+
+- Verificar al inicio que el ambiente esté activado
+  - A veces hacemos `pip install` sin haber activado el ambiente y eso instala en el global.   
+
+## Ejemplo Práctico: Crear y Usar un Ambiente Virtual con venv
+    
+## Creación
+
+Estando dentro de la carpeta del proyecto, en una terminal debemos escribir:
+
+
+```{bash}
+#| echo: true
+#| eval: false
+
+python -m venv mi_entorno
+```        
+
+
+Se genera una carpeta con el nombre del entorno que contiene scripts, binarios, dependencias.
+
+## Activación y desactivación:
+
+Activar
+
+```{bash}
+#| echo: true
+#| eval: false
+
+# Windows: 
+mi_entorno\Scripts\activate
+
+# macOS/Linux: 
+source mi_entorno/bin/activate
+```
+
+Desactivar
+
+```{bash}
+#| echo: true
+#| eval: false
+deactivate
+```
+
+
+## Instalar dependencias en el ambiente:
+
+Instalar con pip
+        
+```{bash}
+#| echo: true
+#| eval: false
+
+pip install pandas
+
+```        
+
+<br>
+
+Verificar paquetes instalados
+
+```{bash}
+#| echo: true
+#| eval: false
+
+pip list
+```    
+
+<br>
+
+Exportar en un archivo `requirements.txt`
+
+```{bash}
+#| echo: true
+#| eval: false
+
+pip freeze > requirements.txt
+``` 
