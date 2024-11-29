@@ -6,6 +6,10 @@ format:
   revealjs:
     incremental: true 
     theme: styles.scss
+title-slide-attributes: 
+  data-background-image: img/pyladies-valpo.png
+  data-background-size: 20%
+  data-background-position: 2% 2%    
 ---
 
 
